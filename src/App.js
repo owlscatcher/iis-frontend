@@ -6,15 +6,24 @@ import ChartComponent from './components/Chart/ChartComponent';
 import ListComponent from './components/List/ListComponent';
 import NavBarComponent from './components/Navbar/NavBarComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/scrollable-element.css'
 
 function App() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
+  const [chartData, setChartData] = useState([])
+  const [selectedPoint, setSelectedPoint] = useState('');
 
   async function getData() {
     const result = await ky.get('items', { prefixUrl: 'http://localhost:3000' }).json();
     setData(result);
   }
+
+  async function getChartData(id) {
+    const result = await ky.get(`data-raw/daily/${id}`, { prefixUrl: 'http://localhost:3000' }).json();
+    setChartData(result);
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -24,7 +33,8 @@ function App() {
   };
 
   const handleListClick = (event) => {
-    console.log(event);
+    getChartData(event.target.id);
+    setSelectedPoint(event.target.textContent);
   };
 
   const filteredData = data.filter(
@@ -40,13 +50,19 @@ function App() {
         </Row>
 
         <Row>
-          <Col xs={3} className='ps-0'>
-            <Filter className="ps-0 pe-0" filter={filter} onFilterChange={handleFilterChange} />
-            <ListComponent data={filteredData} onClick={handleListClick} />
+          <Col xs={3} className='ps-0' >
+            <Row>
+              <Filter className="ps-0 pe-0" filter={filter} onFilterChange={handleFilterChange} />
+            </Row>
+            <Row>
+              <Container  className='scrollable-element' style={{ height: "80vh", overflow: 'auto'}} >
+                <ListComponent data={filteredData} onClick={handleListClick} />
+              </Container>
+            </Row>
           </Col>
 
           <Col xs={9} className='pe-0'>
-            <ChartComponent />
+            <ChartComponent chartData={chartData} pointName={selectedPoint}/>
           </Col>
         </Row>
 
