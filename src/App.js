@@ -45,10 +45,12 @@ function App() {
             <ListComponent data={filteredData} onClick={handleListClick} />
           </Col>
 
-          <Col xs={9}>
+          <Col xs={9} className='pe-0'>
             <ChartComponent />
           </Col>
         </Row>
+
+        <Row></Row>
       </Container>
     </div>
   );
