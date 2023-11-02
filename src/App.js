@@ -15,12 +15,12 @@ function App() {
   const [selectedPoint, setSelectedPoint] = useState('');
 
   async function getData() {
-    const result = await ky.get('items', { prefixUrl: 'http://localhost:3000' }).json();
+    const result = await ky.get('items', { prefixUrl: 'http://192.16.27:3000' }).json();
     setData(result);
   }
 
   async function getChartData(id) {
-    const result = await ky.get(`data-raw/daily/${id}`, { prefixUrl: 'http://localhost:3000' }).json();
+    const result = await ky.get(`data-raw/daily/${id}`, { prefixUrl: 'http://192.168.1.27:3000' }).json();
     setChartData(result);
   }
 

@@ -9,8 +9,10 @@ function NavBarComponent() {
         <Navbar.Brand>IIS v0.0.1</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Разработчик: <b>УРБ-106</b>
+          <Navbar.Text style={{ fontSize: '10px'}}>
+            Разработчик: <b>Веселов А.Е.</b>
+            <br/>
+            Телефон: <b>43-62</b>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
