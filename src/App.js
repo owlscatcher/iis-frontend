@@ -5,6 +5,7 @@ import Filter from './components/Filter/Filter';
 import ChartComponent from './components/Chart/ChartComponent';
 import ListComponent from './components/List/ListComponent';
 import NavBarComponent from './components/Navbar/NavBarComponent';
+import CsvDownloaderComponent from './components/CsvDownloader/CsvDownloaderComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/scrollable-element.css'
 
@@ -15,12 +16,12 @@ function App() {
   const [selectedPoint, setSelectedPoint] = useState('');
 
   async function getData() {
-    const result = await ky.get('items', { prefixUrl: 'http://192.16.27:3000' }).json();
+    const result = await ky.get('items', { prefixUrl: process.env.REACT_APP_API_HOST }).json();
     setData(result);
   }
 
   async function getChartData(id) {
-    const result = await ky.get(`data-raw/daily/${id}`, { prefixUrl: 'http://192.168.1.27:3000' }).json();
+    const result = await ky.get(`data-raw/daily/${id}`, { prefixUrl: process.env.REACT_APP_API_HOST }).json();
     setChartData(result);
   }
 
@@ -48,9 +49,11 @@ function App() {
         <Row>
           <NavBarComponent />
         </Row>
-
         <Row>
           <Col xs={3} className='ps-0' >
+            {/* <Row>
+              <CsvDownloaderComponent  />
+            </Row> */}
             <Row>
               <Filter className="ps-0 pe-0" filter={filter} onFilterChange={handleFilterChange} />
             </Row>
