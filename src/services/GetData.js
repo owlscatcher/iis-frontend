@@ -1,5 +1,9 @@
 import ky from "ky";
 
 export default async function GetData(route) {
-    return await ky.get(route, { prefixUrl: 'http://localhost:3000' }).json();
+  const resp = await (
+    await ky.get(route, { prefixUrl: process.env.REACT_APP_API_HOST })
+  ).json();
+
+  return resp;
 }

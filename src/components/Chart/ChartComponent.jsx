@@ -24,18 +24,18 @@ export default function ChartComponent({ chartData, pointName }) {
   ]);
 
   const dataoptions = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric'
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
   };
 
   const options = {
     title: {
-      left: 'center',
-      text: pointName
+      left: "center",
+      text: pointName,
     },
     tooltip: {
       trigger: "axis",
@@ -45,7 +45,9 @@ export default function ChartComponent({ chartData, pointName }) {
     },
     xAxis: {
       type: "category",
-      data: chartData.map((data) => new Date(data.source_time).toLocaleDateString("en-GB", dataoptions)),
+      data: chartData.map((data) =>
+        new Date(data.source_time).toLocaleDateString("en-GB", dataoptions)
+      ),
     },
     yAxis: {
       type: "value",
@@ -55,21 +57,21 @@ export default function ChartComponent({ chartData, pointName }) {
         name: pointName,
         type: "line",
         smooth: true,
-        sampling: 'lttb',
+        sampling: "lttb",
         itemStyle: {
-          color: 'rgb(255, 70, 131)'
+          color: "rgb(255, 70, 131)",
         },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
-              color: 'rgb(255, 158, 68)'
+              color: "rgb(255, 158, 68)",
             },
             {
               offset: 1,
-              color: 'rgb(255, 70, 131)'
-            }
-          ])
+              color: "rgb(255, 70, 131)",
+            },
+          ]),
         },
         data: chartData.map((data) => data.value),
       },
@@ -104,7 +106,7 @@ export default function ChartComponent({ chartData, pointName }) {
         notMerge={true}
         lazyUpdate={true}
         theme={"theme_name"}
-        style={{ height: "85vh", padding: "0.8em" }}
+        style={{ height: "70vh", padding: "0.8em" }}
       />
     </div>
   );
