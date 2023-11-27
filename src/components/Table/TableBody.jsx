@@ -24,6 +24,9 @@ export default function TableBody({ columns, data, openModal }) {
                 </Button>
               );
             }
+            if (accessor === "value") {
+              tData = row.value[0].value;
+            }
             return <td key={accessor}>{tData}</td>;
           })}
         </tr>

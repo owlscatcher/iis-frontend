@@ -16,11 +16,29 @@ function App() {
   const [selectedPointName, setSelectedPointName] = useState("");
   const [filter, setFilter] = useState("");
 
+  const FETCH_DELAY = 10000;
+
+  const ROUTE_PATHS = {
+    itemsIndex: "items",
+  }
+
+  const setLoop = async () => {
+    const interval = setInterval(() => {
+      GetData(ROUTE_PATHS.itemsIndex).then((result) => {
+        setData(result);
+      });
+    }, FETCH_DELAY);
+
+    return () => clearInterval(interval);
+  };
+
   useEffect(() => {
-    GetData("items").then((result) => {
+    GetData(ROUTE_PATHS.itemsIndex).then((result) => {
       setData(result);
 
       setIsLoading(false);
+
+      setLoop();
     });
   }, []);
 

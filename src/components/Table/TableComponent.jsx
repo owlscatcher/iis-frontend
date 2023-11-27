@@ -4,20 +4,23 @@ import PropTypes from "prop-types";
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../../styles/scrollable-element.css";
 
 export default function TableComponent({ data, openModal }) {
   const columns = [
     { label: "", accessor: "chart" },
     { label: "Id", accessor: "id" },
     { label: "Канал", accessor: "name" },
-    { label: "Начало", accessor: "first_time" },
-    { label: "Обновлено", accessor: "last_time" },
+    { label: "Начало архива", accessor: "first_time" },
+    { label: "Послед. обновление", accessor: "last_time" },
+    { label: "Значение", accessor: "value" },
     { label: "Кол.", accessor: "count" },
     { label: "Тип", accessor: "type" },
   ];
 
   return (
-    <Card className="shadow border border-0">
+    <Card className="shadow border border-0 scrollable-element"
+    style={{ height: "85vh", overflow: "auto" }}>
       <Table className="table table-hover">
         <caption>Таблица мониторинга IIS</caption>
         <TableHead columns={columns} />
