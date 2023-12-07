@@ -12,15 +12,17 @@ export default function TableComponent({ data, openModal }) {
     { label: "Id", accessor: "id" },
     { label: "Канал", accessor: "name" },
     { label: "Начало архива", accessor: "first_time" },
-    { label: "Послед. обновление", accessor: "last_time" },
+    { label: "Послед. обновление", accessor: "source_time" },
     { label: "Значение", accessor: "value" },
     { label: "Кол.", accessor: "count" },
     { label: "Тип", accessor: "type" },
   ];
 
   return (
-    <Card className="shadow border border-0 scrollable-element"
-    style={{ height: "85vh", overflow: "auto" }}>
+    <Card
+      className="shadow border border-0 scrollable-element"
+      style={{ height: "85vh", overflow: "auto" }}
+    >
       <Table className="table table-hover">
         <caption>Таблица мониторинга IIS</caption>
         <TableHead columns={columns} />

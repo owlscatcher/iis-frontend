@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import ChartComponent from "../Chart/ChartComponent";
 import GetData from "../../services/GetData";
 
@@ -15,7 +15,7 @@ export default function ModalComponent({
     GetData(`data-raw/daily/${selectedId}`).then((result) => {
       setChartData(result);
     });
-  }, []);
+  }, [selectedId]);
 
   return (
     <Modal show={show} onHide={handleClose} size="xl">

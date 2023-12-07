@@ -24,8 +24,11 @@ export default function TableBody({ columns, data, openModal }) {
                 </Button>
               );
             }
+            if (accessor === "source_time") {
+              tData = row.data_raw.source_time;
+            }
             if (accessor === "value") {
-              tData = row.value[0].value;
+              tData = row.data_raw.value;
             }
             return <td key={accessor}>{tData}</td>;
           })}
